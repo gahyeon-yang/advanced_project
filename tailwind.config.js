@@ -2,6 +2,11 @@
 module.exports = {
   content: ["./src/pages/**/*.{js,ts,jsx,tsx}", "./src/components/**/*.{js,ts,jsx,tsx}"],
   theme: {
+    screens:{
+      'sm': '375px',
+      'md': '744px',
+      'lg': '1280px',
+    },
     extend: {
       colors: {
         "color-black-500": "#040404",
@@ -28,13 +33,13 @@ module.exports = {
         "color-red-100": "#ffeef0",
         "color-red-200": "#ff4f64",
 
-        "color-background-1": "#fcfcfc",
-        "color-background-2": "#f7f7f7",
-        "color-background-3": "#efefef",
-        "color-background-4": "#f4f7fb",
+        "color-background-100": "#fcfcfc",
+        "color-background-200": "#f7f7f7",
+        "color-background-300": "#efefef",
+        "color-background-400": "#f4f7fb",
 
-        "color-line-1": "#f2f2f2",
-        "color-line-2": "#e6e6e6",
+        "color-line-100": "#f2f2f2",
+        "color-line-200": "#e6e6e6",
       },
       fontSize: {
         "3xl": ["32px", "42px"],
