@@ -53,7 +53,7 @@ const NavBar = () => {
       <div className="flex items-center">
         <div className="text-2xl font-bold mr-20">
           <Link href="/">
-            <Image src={logo} alt="임시시로고" />
+            <Image src={logo} width={100} height={100} alt="임시로고" />
           </Link>
         </div>
 

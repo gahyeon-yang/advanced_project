@@ -31,9 +31,11 @@ button {
   cursor: pointer;
   border: none;
 }
+
 .bold {
   font-weight: var(--font-weight-bold);
 }
+
 .semibold {
   font-weight: var(--font-weight-semibold);
 }
@@ -47,6 +49,7 @@ button {
 }
 
 .main-container {
+  margin-top: 64px;
   padding: 0 260px;
 }
 

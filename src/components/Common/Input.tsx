@@ -5,7 +5,7 @@ import icon_visible_on from "@public/assets/icon_visibility_on.svg";
 
 type InputProps = {
   type: "text" | "password" | "textarea";
-  value: string;
+  value?: string;
   label?: string;
   name?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
@@ -32,13 +32,14 @@ export default function Input({
     type === "textarea" ? (
       <textarea name={name} value={value} onChange={onChange} placeholder={placeholder} />
     ) : type === "password" ? (
-      <div>
+      <div className="relative">
         <input
           type={isPasswordVisible ? "text" : "password"}
           name={name}
           value={value}
           onChange={onChange}
           placeholder={placeholder}
+          className={`w-full border rounded-xl p-4 h-16 ${className}`}
         />
         <Image
           src={isPasswordVisible ? icon_visible_on : icon_visible_off}
@@ -46,11 +47,12 @@ export default function Input({
           width={24}
           height={24}
           alt={isPasswordVisible ? "비밀번호 보기" : "비밀번호 감추기"}
+          className="absolute right-5 top-1/2 transform -translate-y-1/2 cursor-pointer"
         />
       </div>
     ) : (
       <input
-        className={className}
+        className={`w-full border rounded-xl p-4 h-16 hover:border-color-blue-300 ${className}`}
         type={type}
         name={name}
         value={value}
