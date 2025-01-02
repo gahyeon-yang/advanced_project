@@ -1,5 +1,3 @@
-import React, { useState } from "react";
-import { useRouter } from "next/router";
 import useAuthStore from "@/stores/useAuthStore";
 import Input from "@/components/Common/Input";
 import Button from "@/components/Common/Button";
@@ -12,17 +10,17 @@ import { LoginFormData, loginSchema } from "@/utils/validate";
 
 export default function LoginForm() {
   const { setLogin } = useAuthStore();
-  const router = useRouter();
 
   const handleLogin = () => {
-    setLogin("테스트용 드리머", "Dreamer");
+    setLogin("드리머닉", "Dreamer");
     // setLogin("테스트용 메이커", "Maker");
     // router.push("/");
   };
   /* TODO (로그인, 회원가입 공통)
-  * 1. PC버전일 때 Padding 값 조절
-  * 2. 소셜로그인
-  * */
+   * 1. PC버전일 때 Padding 값 조절
+   * 2. 소셜로그인
+   * */
+
   const {
     register,
     handleSubmit,
@@ -70,11 +68,7 @@ export default function LoginForm() {
           {errors.password && <ErrorMessage message={errors.password.message} />}
         </div>
         <div className="flex justify-center">
-          <Button
-            label="로그인"
-            onClick={handleLogin}
-            disabled={!isFormValid}
-          />
+          <Button label="로그인" onClick={handleLogin} disabled={!isFormValid} />
         </div>
       </form>
       <div className="flex justify-center">
