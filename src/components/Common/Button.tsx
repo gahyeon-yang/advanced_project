@@ -1,16 +1,28 @@
-import React from 'react';
+import React from "react";
 
 type ButtonProps = {
   label: string;
   onClick?: () => void;
   disabled?: boolean;
   className?: string;
-  type?: string;
+  type?: "button" | "submit" | "reset";
 };
 
-const Button = ({ label, onClick, disabled = false, className = '', type }: ButtonProps) => {
+const Button = ({
+  label,
+  onClick,
+  disabled = false,
+  className = "",
+  type = "button",
+}: ButtonProps) => {
   return (
-    <button className={`w-full py-4 bg-color-blue-300 text-white bold rounded-2xl ${className}`} onClick={onClick} disabled={disabled}>
+    <button
+      type={type}
+      className={`w-full py-4 bg-color-blue-300 text-white bold rounded-2xl ${disabled ? "bg-color-gray-100 cursor-not-allowed" : "bg-color-blue-300 "
+        } ${className}`}
+      onClick={onClick}
+      disabled={disabled}
+    >
       {label}
     </button>
   );

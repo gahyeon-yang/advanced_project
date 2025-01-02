@@ -19,10 +19,14 @@ export default function LoginForm() {
     // setLogin("테스트용 메이커", "Maker");
     // router.push("/");
   };
-
+  /* TODO (로그인, 회원가입 공통)
+  * 1. PC버전일 때 Padding 값 조절
+  * 2. 소셜로그인
+  * */
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors },
   } = useForm<LoginFormData>({
     resolver: zodResolver(loginSchema),
@@ -31,11 +35,18 @@ export default function LoginForm() {
 
   const onSubmit = (data: LoginFormData) => {
     // setLogin(data.email, data.role);
-    router.push("/");
+    // router.push("/");
   };
 
+  const watchFields = watch();
+  const isFormValid = Object.values(watchFields).every((value) => value?.toString().trim() !== "");
+
+  const ErrorMessage = ({ message }: { message: string | undefined }) => (
+    <p className="text-color-red-200 mt-1 absolute right-0">{message}</p>
+  );
+
   return (
-    <div className="flex flex-col items-center gap-16 h-full">
+    <div className="flex flex-col items-center gap-8 h-full">
       <Image src={logo} alt="로고" />
       <form className="w-full gap-8 flex flex-col relative" onSubmit={handleSubmit(onSubmit)}>
         <div className="mb-2">
@@ -43,42 +54,36 @@ export default function LoginForm() {
             {...register("email")}
             placeholder="이메일을 입력해 주세요"
             type="text"
-            className="h-16"
             label="이메일"
             error={!!errors.email}
           />
-          {errors.email && (
-            <p className="text-red-500 mt-1 absolute right-0">{errors.email.message}</p>
-          )}
+          {errors.email && <ErrorMessage message={errors.email.message} />}
         </div>
         <div className="mb-2">
           <Input
             {...register("password")}
             placeholder="비밀번호를 입력해 주세요"
             type="password"
-            className="h-16"
             label="비밀번호"
             error={!!errors.password}
           />
-          {errors.password && (
-            <p className="text-red-500 mt-1 absolute right-0">{errors.password.message}</p>
-          )}
+          {errors.password && <ErrorMessage message={errors.password.message} />}
         </div>
         <div className="flex justify-center">
           <Button
             label="로그인"
             onClick={handleLogin}
-            className="w-full py-4 bg-color-blue-300 text-white bold rounded-2xl"
+            disabled={!isFormValid}
           />
         </div>
       </form>
       <div className="flex justify-center">
         <p className="mr-2">아직 니가가라하와이 회원이 아니신가요?</p>
-        <Link href="/signup" className="text-blue-500 hover:underline">
+        <Link href="/signup" className="text-color-blue-300 underline">
           이메일로 회원가입하기
         </Link>
       </div>
-      <div className="">
+      <div>
         <h2>SNS 계정으로 간편 가입하기</h2>
       </div>
     </div>
