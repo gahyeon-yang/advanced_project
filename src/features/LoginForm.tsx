@@ -17,11 +17,16 @@ export default function LoginForm() {
   const handleLogin = () => {
     setLogin("테스트용 드리머", "Dreamer");
     // setLogin("테스트용 메이커", "Maker");
-    router.push("/");
+    // router.push("/");
   };
 
-  const { register, handleSubmit, formState: { errors } } = useForm<LoginFormData>({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<LoginFormData>({
     resolver: zodResolver(loginSchema),
+    mode: "onBlur",
   });
 
   const onSubmit = (data: LoginFormData) => {
@@ -32,23 +37,33 @@ export default function LoginForm() {
   return (
     <div className="flex flex-col items-center gap-16 h-full">
       <Image src={logo} alt="로고" />
-      <form className="w-full gap-8 flex flex-col" onSubmit={handleSubmit(onSubmit)}>
-        <Input
-          {...register("email")}
-          placeholder="이메일을 입력해 주세요"
-          type="text"
-          className="h-16"
-          label="이메일"
-        />
-        {errors.email && <p>{errors.email.message}</p>}
-        <Input
-          {...register("password")}
-          placeholder="비밀번호를 입력해 주세요"
-          type="password"
-          className="h-16"
-          label="비밀번호"
-        />
-        {errors.password && <p>{errors.password.message}</p>}
+      <form className="w-full gap-8 flex flex-col relative" onSubmit={handleSubmit(onSubmit)}>
+        <div className="mb-2">
+          <Input
+            {...register("email")}
+            placeholder="이메일을 입력해 주세요"
+            type="text"
+            className="h-16"
+            label="이메일"
+            error={!!errors.email}
+          />
+          {errors.email && (
+            <p className="text-red-500 mt-1 absolute right-0">{errors.email.message}</p>
+          )}
+        </div>
+        <div className="mb-2">
+          <Input
+            {...register("password")}
+            placeholder="비밀번호를 입력해 주세요"
+            type="password"
+            className="h-16"
+            label="비밀번호"
+            error={!!errors.password}
+          />
+          {errors.password && (
+            <p className="text-red-500 mt-1 absolute right-0">{errors.password.message}</p>
+          )}
+        </div>
         <div className="flex justify-center">
           <Button
             label="로그인"
