@@ -3,7 +3,7 @@ module.exports = {
   content: ["./src/pages/**/*.{js,ts,jsx,tsx}", "./src/components/**/*.{js,ts,jsx,tsx}"],
   theme: {
     screens: {
-      mobile: { min: "375px", max: "743px" },
+      mobile: { max: "743px" },
       tablet: { min: "744px", max: "1023px" },
       pc: { min: "1024px" },
       "mobile-tablet": { min: "375px", max: "1023px" },
