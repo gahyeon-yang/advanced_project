@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-type Role = "Dreamer" | "Maker" | null;
+type Role = "Dreamer" | "Maker" | "guest";
 
 interface AuthState {
   isLoggedIn: boolean;
@@ -13,9 +13,9 @@ interface AuthState {
 const useAuthStore = create<AuthState>((set) => ({
   isLoggedIn: false,
   nickname: null,
-  role: null,
+  role: "guest",
   setLogin: (nickname: string, role: Role) => set({ isLoggedIn: true, nickname, role }),
-  setLogout: () => set({ isLoggedIn: false, nickname: null, role: null }),
+  setLogout: () => set({ isLoggedIn: false, nickname: null, role: "guest" }),
 }));
 
 export default useAuthStore;

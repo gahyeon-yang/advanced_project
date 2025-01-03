@@ -18,44 +18,26 @@ const NavBar = () => {
     setIsOpenSidebar(true);
   };
   const renderLinks = () => {
-    if (!isLoggedIn) {
-      return (
-        <>
-          <li>
-            <Link href="/">Maker 찾기</Link>
-          </li>
-        </>
-      );
-    }
+    const linkItems = {
+      guest: [{ href: "/", label: "Maker 찾기" }],
+      Dreamer: [
+        { href: "/", label: "여행 요청" },
+        { href: "/", label: "Maker 찾기" },
+        { href: "/", label: "내 여행 관리" }
+      ],
+      Maker: [
+        { href: "/", label: "받은 요청" },
+        { href: "/", label: "내 여행 관리" }
+      ],
+    };
 
-    if (role === "Dreamer") {
-      return (
-        <>
-          <li>
-            <Link href="/">여행 요청</Link>
+    return (
+      <>
+        {linkItems[isLoggedIn ? role : "guest"].map((link, index) => (
+          <li key={index}>
+            <Link href={link.href}>{link.label}</Link>
           </li>
-          <li>
-            <Link href="/">Maker 찾기</Link>
-          </li>
-          <li>
-            <Link href="/">내 여행 관리</Link>
-          </li>
-        </>
-      );
-    }
-
-    if (role === "Maker") {
-      return (
-        <>
-          <li>
-            <Link href="/">받은 요청</Link>
-          </li>
-          <li>
-            <Link href="/">내 여행 관리</Link>
-          </li>
-        </>
-      );
-    }
+        ))}</>);
   };
 
   return (
