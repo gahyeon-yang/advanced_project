@@ -22,7 +22,7 @@ const NavBar = () => {
     setIsOpenSidebar(true);
   };
   const handleOpenNotification = () => {
-    setIsOpenNotification(true);
+    setIsOpenNotification((prev) => !prev);
   };
   const handleCloseNotification = () => {
     setIsOpenNotification(false);
@@ -71,18 +71,35 @@ const NavBar = () => {
       <div className="flex items-center space-x-4">
         {isLoggedIn ? (
           <>
-            <div className="flex items-center space-x-2">
+            <div className="flex items-center space-x-2 cursor-pointer">
               <Image src={coconut_icon} alt="코코넛" width={24} height={24} />
               <p className="regular">50p</p>
             </div>
-            <Image src={chatting_icon} alt="채팅" width={36} height={36} />
-            <Image
-              src={alarm_icon}
-              alt="알림"
-              width={36}
-              height={36}
-              onClick={handleOpenNotification}
-            />
+            <div className="relative">
+              <Image
+                src={chatting_icon}
+                alt="채팅"
+                width={36}
+                height={36}
+                className="cursor-pointer"
+              />
+              <span className="absolute top-0 right-0 rounded-full h-2 w-2 bg-color-red-200 animate-ping"></span>
+              <span className="absolute top-0 right-0 rounded-full h-2 w-2 bg-color-red-200"></span>
+            </div>
+            <div className="relative">
+              <Image
+                src={alarm_icon}
+                alt="알림"
+                width={36}
+                height={36}
+                onClick={handleOpenNotification}
+                className="cursor-pointer"
+              />
+              {/* 알림 있다면 */}
+              <span className="absolute top-0 right-0 rounded-full h-2 w-2 bg-color-red-200 animate-ping"></span>
+              <span className="absolute top-0 right-0 rounded-full h-2 w-2 bg-color-red-200"></span>
+            </div>
+
             {isOpenNotification && <Notification closeModal={handleCloseNotification} />}
             <div
               className="flex items-center space-x-2 cursor-pointer"
@@ -115,7 +132,7 @@ const NavBar = () => {
       {/* 사이드바 */}
       {isOpenSidebar && (
         <div className="fixed inset-0 z-[9999] bg-black bg-opacity-50 flex justify-end items-center">
-          <div className="flex flex-col bg-white w-[220px] h-full p-4 shadow-lg ">
+          <div className="flex flex-col bg-white w-[220px] h-full p-4 shadow-lg">
             <div className="flex justify-end mb-4">
               <Image
                 src={closeIcon}
