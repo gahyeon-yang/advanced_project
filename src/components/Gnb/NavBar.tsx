@@ -9,25 +9,34 @@ import alarm_icon from "@public/assets/icon_alarm.svg";
 import user_img from "@public/assets/icon_default.svg";
 import chatting_icon from "@public/assets/icon_chatting.svg";
 import coconut_icon from "@public/assets/icon_coconut.svg";
+import Notification from "./Notification";
 
 const NavBar = () => {
   const { isLoggedIn, nickname, role, setLogout } = useAuthStore();
   const [isOpenSidebar, setIsOpenSidebar] = useState<boolean>(false);
+  const [isOpenNotification, setIsOpenNotification] = useState<boolean>(false);
 
   const handleOpenSidebar = () => {
     setIsOpenSidebar(true);
   };
+  const handleOpenNotification = () => {
+    setIsOpenNotification(true);
+  };
+  const handleCloseNotification = () => {
+    setIsOpenNotification(false);
+  };
+
   const renderLinks = () => {
     const linkItems = {
       guest: [{ href: "/", label: "Maker 찾기" }],
       Dreamer: [
         { href: "/", label: "여행 요청" },
         { href: "/", label: "Maker 찾기" },
-        { href: "/", label: "내 여행 관리" }
+        { href: "/", label: "내 여행 관리" },
       ],
       Maker: [
         { href: "/", label: "받은 요청" },
-        { href: "/", label: "내 여행 관리" }
+        { href: "/", label: "내 여행 관리" },
       ],
     };
 
@@ -37,7 +46,9 @@ const NavBar = () => {
           <li key={index}>
             <Link href={link.href}>{link.label}</Link>
           </li>
-        ))}</>);
+        ))}
+      </>
+    );
   };
 
   return (
@@ -59,7 +70,15 @@ const NavBar = () => {
               <p className="regular">50p</p>
             </div>
             <Image src={chatting_icon} alt="채팅" width={36} height={36} />
-            <Image src={alarm_icon} alt="알림" width={36} height={36} />
+            <Image
+              src={alarm_icon}
+              alt="알림"
+              width={36}
+              height={36}
+              onClick={handleOpenNotification}
+              className="cursor-pointer"
+            />
+            {isOpenNotification && <Notification closeModal={handleCloseNotification} />}
             <div className="flex items-center space-x-2">
               <Image src={user_img} alt="유저이미지" width={36} height={36} />
               <span className="text-2lg medium hidden pc:block">{nickname}</span>
@@ -83,6 +102,7 @@ const NavBar = () => {
           onClick={handleOpenSidebar}
         />
       </div>
+
       {/* 사이드바 */}
       {isOpenSidebar && (
         <div className="fixed inset-0 z-[9999] bg-black bg-opacity-50 flex justify-end items-center">
