@@ -31,85 +31,87 @@ export default function SignUpForm() {
   );
 
   return (
-    <div className="flex flex-col items-center gap-8 h-full">
-      <Image src={logo} alt="로고" />
+    <div className="flex justify-center">
+      <div className="flex flex-col items-center justify-center gap-8 pc:w-[640px] mobile-tablet:w-full">
+        <Image src={logo} alt="로고" />
 
-      <form onSubmit={handleSubmit(onSubmit)} className="w-full gap-8 flex flex-col relative">
-        <div>
-          <Input
-            type="text"
-            label="이름"
-            placeholder="성함을 입력해주세요"
-            {...register("name")}
-            error={!!errors.name}
-          />
-          {errors.name && <ErrorMessage message={errors.name.message} />}
-        </div>
-
-        <div>
-          <Input
-            type="text"
-            label="이메일"
-            placeholder="이메일을 입력해 주세요"
-            {...register("email")}
-            error={!!errors.email}
-          />
-          {errors.email && <ErrorMessage message={errors.email.message} />}
-        </div>
-
-        <div>
-          <Input
-            type="text"
-            label="전화번호"
-            placeholder="숫자만 입력해주세요"
-            {...register("phone")}
-            error={!!errors.phone}
-          />
-          {errors.phone && <ErrorMessage message={errors.phone.message} />}
-        </div>
-
-        <div>
-          <Input
-            type="password"
-            label="비밀번호"
-            placeholder="비밀번호를 입력해 주세요"
-            {...register("password")}
-            error={!!errors.password}
-          />
-          {errors.password && <ErrorMessage message={errors.password.message} />}
-        </div>
-
-        <div>
-          <Input
-            type="password"
-            label="비밀번호 확인"
-            placeholder="비밀번호를 다시 한번 입력해 주세요"
-            {...register("confirmPassword")}
-            error={!!errors.confirmPassword}
-          />
-          {errors.confirmPassword && <ErrorMessage message={errors.confirmPassword.message} />}
-        </div>
-        <div className="mb-2">
-          <p>역할</p>
-          <div className="flex justify-around">
-            <label htmlFor="dreamer" className="flex gap-2">
-              <input type="radio" value="dreamer" {...register("role")} />
-              Dreamer
-            </label>
-            <label htmlFor="maker" className="flex gap-2">
-              <input type="radio" value="maker" {...register("role")} />
-              Maker
-            </label>
+        <form onSubmit={handleSubmit(onSubmit)} className="w-full gap-8 flex flex-col relative">
+          <div>
+            <Input
+              type="text"
+              label="닉네임"
+              placeholder="닉네임을 입력해주세요"
+              {...register("nickname")}
+              error={!!errors.nickname}
+            />
+            {errors.nickname && <ErrorMessage message={errors.nickname.message} />}
           </div>
-          {errors.role && <ErrorMessage message={errors.role.message} />}
+
+          <div>
+            <Input
+              type="text"
+              label="이메일"
+              placeholder="이메일을 입력해 주세요"
+              {...register("email")}
+              error={!!errors.email}
+            />
+            {errors.email && <ErrorMessage message={errors.email.message} />}
+          </div>
+
+          <div>
+            <Input
+              type="text"
+              label="전화번호"
+              placeholder="숫자만 입력해주세요"
+              {...register("phone")}
+              error={!!errors.phone}
+            />
+            {errors.phone && <ErrorMessage message={errors.phone.message} />}
+          </div>
+
+          <div>
+            <Input
+              type="password"
+              label="비밀번호"
+              placeholder="비밀번호를 입력해 주세요"
+              {...register("password")}
+              error={!!errors.password}
+            />
+            {errors.password && <ErrorMessage message={errors.password.message} />}
+          </div>
+
+          <div>
+            <Input
+              type="password"
+              label="비밀번호 확인"
+              placeholder="비밀번호를 다시 한번 입력해 주세요"
+              {...register("confirmPassword")}
+              error={!!errors.confirmPassword}
+            />
+            {errors.confirmPassword && <ErrorMessage message={errors.confirmPassword.message} />}
+          </div>
+          <div className="mb-2">
+            <p>역할</p>
+            <div className="flex justify-around">
+              <label htmlFor="dreamer" className="flex gap-2">
+                <input type="radio" value="dreamer" {...register("role")} />
+                Dreamer
+              </label>
+              <label htmlFor="maker" className="flex gap-2">
+                <input type="radio" value="maker" {...register("role")} />
+                Maker
+              </label>
+            </div>
+            {errors.role && <ErrorMessage message={errors.role.message} />}
+          </div>
+          <Button type="submit" label="회원가입" disabled={!isFormValid} />
+        </form>
+        <div className="flex justify-center">
+          <p className="mr-2">이미 니가가라하와이 회원이신가요?</p>
+          <Link href="/login" className="text-color-blue-300 underline">
+            로그인
+          </Link>
         </div>
-        <Button type="submit" label="회원가입" disabled={!isFormValid} />
-      </form>
-      <div className="flex justify-center">
-        <p className="mr-2">이미 니가가라하와이 회원이신가요?</p>
-        <Link href="/login" className="text-color-blue-300 underline">
-          로그인
-        </Link>
       </div>
     </div>
   );

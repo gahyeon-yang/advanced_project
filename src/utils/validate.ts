@@ -12,7 +12,7 @@ export type LoginFormData = z.infer<typeof loginSchema>;
 
 export const signUpSchema = z
   .object({
-    name: z.string().min(1, { message: "이름을 입력해 주세요." }),
+    nickname: z.string().min(1, { message: "닉네임을 입력해 주세요." }),
     email: z
       .string()
       .min(1, { message: "이메일을 입력해 주세요." })
