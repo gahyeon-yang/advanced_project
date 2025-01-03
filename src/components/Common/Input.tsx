@@ -56,7 +56,7 @@ const Input = forwardRef<HTMLInputElement | HTMLTextAreaElement, InputProps>(
             value={value}
             onChange={onChange}
             placeholder={placeholder}
-            className={`w-full border rounded-xl p-4 h-16 pc:text-xl tablet:text-md ${
+            className={`w-full border rounded-xl p-4 h-16 pc:text-xl mobile-tablet:text-lg ${
               error ? "border-color-red-200" : "border-color-blue-300"
             }  ${className}`}
             {...rest}
@@ -73,7 +73,7 @@ const Input = forwardRef<HTMLInputElement | HTMLTextAreaElement, InputProps>(
       ) : (
         <input
           ref={ref as React.Ref<HTMLInputElement>}
-          className={`w-full border rounded-xl p-4 h-16 pc:text-xl tablet:text-md ${
+          className={`w-full border rounded-xl p-4 h-16 pc:text-xl mobile-tablet:text-lg ${
             error ? "border-color-red-200" : "border-color-blue-300"
           } ${className}`}
           type={type}
@@ -88,7 +88,7 @@ const Input = forwardRef<HTMLInputElement | HTMLTextAreaElement, InputProps>(
     return (
       <div>
         {label && (
-          <label className="block mb-4 pc:text-xl tablet:text-md" htmlFor={name}>
+          <label className="block mb-4 pc:text-xl mobile-tablet:text-lg" htmlFor={name}>
             {label}
           </label>
         )}

@@ -75,8 +75,11 @@ export default function LoginForm() {
         </div>
       </form>
       <div className="flex justify-center mb-10 pc:text-xl ">
-        <p className="mr-2">아직 니가가라하와이 회원이 아니신가요?</p>
-        <Link href="/signup" className="text-color-blue-300 underline">
+        <p className="mr-2 text-lg mobile-tablet:text-xs">아직 니가가라하와이 회원이 아니신가요?</p>
+        <Link
+          href="/signup"
+          className="text-color-blue-300 underline text-lg mobile-tablet:text-xs"
+        >
           이메일로 회원가입하기
         </Link>
       </div>

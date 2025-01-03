@@ -10,11 +10,13 @@ import user_img from "@public/assets/icon_default.svg";
 import chatting_icon from "@public/assets/icon_chatting.svg";
 import coconut_icon from "@public/assets/icon_coconut.svg";
 import Notification from "./Notification";
+import UserMenu from "./UserMenu";
 
 const NavBar = () => {
   const { isLoggedIn, nickname, role, setLogout } = useAuthStore();
   const [isOpenSidebar, setIsOpenSidebar] = useState<boolean>(false);
   const [isOpenNotification, setIsOpenNotification] = useState<boolean>(false);
+  const [isOpenUserMenu, setIsOpenUserMenu] = useState<boolean>(false);
 
   const handleOpenSidebar = () => {
     setIsOpenSidebar(true);
@@ -24,6 +26,10 @@ const NavBar = () => {
   };
   const handleCloseNotification = () => {
     setIsOpenNotification(false);
+  };
+
+  const handleOpenUserMenu = () => {
+    setIsOpenUserMenu((prev) => !prev);
   };
 
   const renderLinks = () => {
@@ -52,21 +58,21 @@ const NavBar = () => {
   };
 
   return (
-    <div className="flex items-center justify-between py-6 bg-color-background-200 pc:px-32 tablet:px-5 mobile:px-4">
+    <div className="flex items-center justify-between py-6 bg-color-background-200 px-32 tablet:px-5 mobile:px-4">
       <div className="flex items-center">
-        <div className="text-2xl font-bold mr-20">
+        <div className="text-2xl font-bold mr-16 mobile-tablet:mr-0">
           <Link href="/">
             <Image src={logo} width={100} height={100} alt="임시로고" />
           </Link>
         </div>
 
-        <ul className="hidden space-x-6 text-2lg bold pc:flex">{renderLinks()}</ul>
+        <ul className="space-x-4 text-lg bold hidden pc:flex">{renderLinks()}</ul>
       </div>
       <div className="flex items-center space-x-4">
         {isLoggedIn ? (
           <>
             <div className="flex items-center space-x-2">
-              <Image src={coconut_icon} alt="코코넛" width={36} height={36} />
+              <Image src={coconut_icon} alt="코코넛" width={24} height={24} />
               <p className="regular">50p</p>
             </div>
             <Image src={chatting_icon} alt="채팅" width={36} height={36} />
@@ -76,18 +82,21 @@ const NavBar = () => {
               width={36}
               height={36}
               onClick={handleOpenNotification}
-              className="cursor-pointer"
             />
             {isOpenNotification && <Notification closeModal={handleCloseNotification} />}
-            <div className="flex items-center space-x-2">
+            <div
+              className="flex items-center space-x-2 cursor-pointer"
+              onClick={handleOpenUserMenu}
+            >
               <Image src={user_img} alt="유저이미지" width={36} height={36} />
               <span className="text-2lg medium hidden pc:block">{nickname}</span>
             </div>
+            {isOpenUserMenu && <UserMenu />}
           </>
         ) : (
           <>
             <Link href="/login">
-              <button className="hidden pc:block px-6 py-3 bg-color-blue-300 rounded-2xl hover:bg-color-blue-200 text-white text-2lg semibold">
+              <button className="px-6 py-3 bg-color-blue-300 rounded-2xl hover:bg-color-blue-200 text-white text-2lg semibold mobile-tablet:text-md mobile-tablet:px-4 mobile-tablet:py-2)">
                 로그인
               </button>
             </Link>
