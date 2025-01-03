@@ -3,10 +3,10 @@ module.exports = {
   content: ["./src/pages/**/*.{js,ts,jsx,tsx}", "./src/components/**/*.{js,ts,jsx,tsx}"],
   theme: {
     screens: {
-      mobile: "375px",
-      tablet: "744px",
-      pc: "1024px",
-    },
+     mobile: { max: "374px" },
+     tablet: { max: "743px" },
+     pc: { max: "1023px" },
+  },
     extend: {
       colors: {
         "color-black-500": "#040404",
